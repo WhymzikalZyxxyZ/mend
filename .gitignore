@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Worker
+worker/node_modules/
+worker/.wrangler/
+worker/dist/
+
+.env

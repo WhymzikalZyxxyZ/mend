@@ -1,0 +1,13 @@
+name               = "mend"
+main               = "src/index.js"
+compatibility_date = "2024-11-01"
+
+[[routes]]
+pattern   = "mend-api.zyxwonderland.xyz/*"
+zone_name = "zyxwonderland.xyz"
+
+[vars]
+SITE_ORIGIN = "https://zyxwonderland.xyz"
+
+# Recipe API key (if ADR-2 lands on the hybrid/API-backed option) belongs in a
+# Worker secret, never in this file: `wrangler secret put RECIPE_API_KEY`.
