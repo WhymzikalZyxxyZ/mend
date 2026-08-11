@@ -33,7 +33,7 @@ Nearby-restaurant search needs device location, which is sensitive data.
 
 Sideloading (ADR-001) means no Play Protect vetting and no automatic update channel.
 
-**Mitigation stance:** app should self-check its installed version against the latest GitHub Release tag and prompt the user to update manually. Users must be clearly told, before installing, that they're trusting a self-signed APK from a personal GitHub repo, not a vetted store listing.
+**Mitigation stance:** implemented — the app self-checks its installed version against the latest GitHub Release tag (`xyz.zyxwonderland.mend.update`) and shows a dismissible in-app banner when a newer one exists; see the README's "Updating" section. Users must still be clearly told, before installing, that they're trusting a self-signed APK from a personal GitHub repo, not a vetted store listing — that messaging doesn't exist yet and remains a gap.
 
 ## Backend free-tier ceiling — LOW (for now)
 

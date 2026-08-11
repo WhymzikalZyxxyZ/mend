@@ -5,6 +5,14 @@ plugins {
     alias(libs.plugins.composeCompiler)
 }
 
+// Release signing is optional at build time: local/PR builds work unsigned,
+// the release workflow supplies these via env vars sourced from repo secrets.
+val releaseStoreFile     = System.getenv("RELEASE_STORE_FILE")
+val releaseStorePassword = System.getenv("RELEASE_STORE_PASSWORD")
+val releaseKeyAlias      = System.getenv("RELEASE_KEY_ALIAS")
+val releaseKeyPassword   = System.getenv("RELEASE_KEY_PASSWORD")
+val hasReleaseSigning    = !releaseStoreFile.isNullOrBlank()
+
 android {
     namespace   = "xyz.zyxwonderland.mend"
     compileSdk  = 35
@@ -17,10 +25,22 @@ android {
         versionName   = "0.1.0"
     }
 
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile     = file(releaseStoreFile!!)
+                storePassword = releaseStorePassword
+                keyAlias      = releaseKeyAlias
+                keyPassword   = releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
         }
     }
 
@@ -31,10 +51,15 @@ android {
 
     kotlinOptions { jvmTarget = "11" }
 
-    buildFeatures { compose = true }
+    buildFeatures {
+        compose     = true
+        buildConfig = true
+    }
 }
 
 dependencies {
+    implementation(libs.core.ktx)
+
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     implementation(libs.compose.ui)
@@ -54,4 +79,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     debugImplementation(libs.compose.ui.tooling)
+
+    testImplementation(libs.junit)
 }

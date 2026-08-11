@@ -8,6 +8,8 @@ composeBom        = "2024.09.03"
 activityCompose   = "1.9.2"
 navigationCompose = "2.8.2"
 lifecycle         = "2.8.6"
+junit             = "4.13.2"
+coreKtx           = "1.13.1"
 
 [libraries]
 kotlinx-coroutines-core    = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",    version.ref = "coroutines" }
@@ -21,6 +23,8 @@ ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serializatio
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+junit       = { group = "junit",                name = "junit",       version.ref = "junit" }
+core-ktx    = { group = "androidx.core",        name = "core-ktx",    version.ref = "coreKtx" }
 
 compose-bom                = { group = "androidx.compose",           name = "compose-bom",              version.ref = "composeBom" }
 compose-ui                 = { group = "androidx.compose.ui",        name = "ui" }
