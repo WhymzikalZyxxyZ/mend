@@ -7,10 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.weight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -32,7 +29,9 @@ class MainActivity : ComponentActivity() {
                 val updateInfo by updateViewModel.updateInfo.collectAsState()
                 val context = LocalContext.current
 
-                Column(modifier = Modifier.fillMaxSize()) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Text("MEND — coming soon", modifier = Modifier.align(Alignment.Center))
+
                     updateInfo?.let { info ->
                         UpdateBanner(
                             info = info,
@@ -40,13 +39,8 @@ class MainActivity : ComponentActivity() {
                                 context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(info.htmlUrl)))
                             },
                             onDismiss = updateViewModel::dismiss,
+                            modifier = Modifier.align(Alignment.TopCenter),
                         )
-                    }
-                    Box(
-                        modifier = Modifier.weight(1f).fillMaxWidth(),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text("MEND — coming soon")
                     }
                 }
             }
