@@ -7,7 +7,7 @@
 
     <application
         android:label="MEND"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:theme="@android:style/Theme.Material.NoActionBar"
         android:allowBackup="false"
         android:supportsRtl="true">
 
